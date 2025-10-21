@@ -1,4 +1,3 @@
-
 function calculate() {
   const inr = parseFloat(document.getElementById("inr").value);
   const bleeding = document.getElementById("bleeding").value;
@@ -48,22 +47,22 @@ function calculate() {
     <b>ขนาดยาใหม่ต่อสัปดาห์ (mg):</b> ${newWeekly.toFixed(2)}<br>
     <b>เฉลี่ยต่อวัน:</b> ${daily.toFixed(2)} mg<br>
     <b>จำนวนเม็ดยาใกล้เคียงที่สุด:</b><br>
-    ▸ Warfarin 2 mg: ${dosePlan[2]} เม็ด<br>
-    ▸ Warfarin 3 mg: ${dosePlan[3]} เม็ด
+    ▸ Warfarin 3 mg: ${dosePlan[3]} เม็ด<br>
+    ▸ Warfarin 5 mg: ${dosePlan[5]} เม็ด
   `;
 }
 
 function calculateTabletPlan(total) {
   let minDiff = Infinity;
-  let best = { 2: 0, 3: 0 };
+  let best = { 3: 0, 5: 0 };
 
-  for (let i = 0; i <= total / 2 + 1; i++) {
-    for (let j = 0; j <= total / 3 + 1; j++) {
-      let sum = i * 2 + j * 3;
+  for (let i = 0; i <= total / 3 + 1; i++) {
+    for (let j = 0; j <= total / 5 + 1; j++) {
+      let sum = i * 3 + j * 5;
       let diff = Math.abs(sum - total);
       if (diff <= total * 0.5 && diff < minDiff) {
         minDiff = diff;
-        best = { 2: i, 3: j };
+        best = { 3: i, 5: j };
       }
     }
   }
